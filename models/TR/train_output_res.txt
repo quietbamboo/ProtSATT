@@ -1,0 +1,16 @@
+==========fold0============
+best_train_mse: 0.02746058627963066
+best_train_epoch: 492
+===========val==================
+spearmanr_in_best_loss: 0.2819515913855536; epoch: 498; val_loss: 0.03294403851032257
+===========val==================
+best_spearmanr: 0.42678115665944466; epoch: 484; val_loss: 0.042792245745658875
+
+========test best loss model in val=========
+test spearmanr in best val loss: 0.6438345721364589
+loss: 0.045418091118335724
+
+========test best spearmanr model in val=========
+test spearmanr in best val spearmnar: 0.47428911465835966
+loss: 0.05351938307285309
+

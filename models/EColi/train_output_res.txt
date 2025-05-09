@@ -1,0 +1,201 @@
+==========fold1============
+y_test.count(0.): 219
+y_test.count(1.): 209
+=================
+best_train_acc_0: 0.7793202489229296
+best_train_acc_1: 0.780045351473923
+best_train_acc_0_in_f1: 0.7434179033030158
+best_train_acc_1_in_f1: 0.7494331065759637
+=================
+best_test_acc: 0.7313084112149533
+best_epoch: 383
+best_test_acc_0: 0.730593607305936
+best_test_acc_1: 0.7320574162679426
+=================
+best_test_f1_score: 0.7402597402597403
+best_acc_in_best_f1: 0.719626168224299
+best_test_acc_0_in_f1: 0.6255707762557078
+best_test_acc_1_in_f1: 0.8181818181818182
+best_f1_epoch: 181
+
+==========fold2============
+y_test.count(0.): 231
+y_test.count(1.): 197
+=================
+best_train_acc_0: 0.8415984593163216
+best_train_acc_1: 0.6936936936936937
+best_train_acc_0_in_f1: 0.8666345690900337
+best_train_acc_1_in_f1: 0.6649774774774775
+=================
+best_test_acc: 0.7219626168224299
+best_epoch: 413
+best_test_acc_0: 0.7359307359307359
+best_test_acc_1: 0.7055837563451777
+=================
+best_test_f1_score: 0.7192575406032483
+best_acc_in_best_f1: 0.7172897196261683
+best_test_acc_0_in_f1: 0.658008658008658
+best_test_acc_1_in_f1: 0.7868020304568528
+best_f1_epoch: 458
+
+==========fold3============
+y_test.count(0.): 248
+y_test.count(1.): 180
+=================
+best_train_acc_0: 0.7567961165048543
+best_train_acc_1: 0.6229782487451199
+best_train_acc_0_in_f1: 0.7689320388349514
+best_train_acc_1_in_f1: 0.6581148912437256
+=================
+best_test_acc: 0.6635514018691588
+best_epoch: 51
+best_test_acc_0: 0.657258064516129
+best_test_acc_1: 0.6722222222222223
+=================
+best_test_f1_score: 0.6637168141592921
+best_acc_in_best_f1: 0.6448598130841121
+best_test_acc_0_in_f1: 0.5080645161290323
+best_test_acc_1_in_f1: 0.8333333333333334
+best_f1_epoch: 126
+
+==========fold4============
+y_test.count(0.): 220
+y_test.count(1.): 208
+=================
+best_train_acc_0: 0.8069923371647509
+best_train_acc_1: 0.6940509915014165
+best_train_acc_0_in_f1: 0.7701149425287356
+best_train_acc_1_in_f1: 0.4861189801699717
+=================
+best_test_acc: 0.705607476635514
+best_epoch: 274
+best_test_acc_0: 0.8136363636363636
+best_test_acc_1: 0.5913461538461539
+=================
+best_test_f1_score: 0.6835443037974682
+best_acc_in_best_f1: 0.5911214953271028
+best_test_acc_0_in_f1: 0.2909090909090909
+best_test_acc_1_in_f1: 0.9086538461538461
+best_f1_epoch: 50
+
+==========fold5============
+y_test.count(0.): 186
+y_test.count(1.): 242
+=================
+best_train_acc_0: 0.7615457115928369
+best_train_acc_1: 0.7411900635470826
+best_train_acc_0_in_f1: 0.7587181903864278
+best_train_acc_1_in_f1: 0.7053726169844021
+=================
+best_test_acc: 0.7616822429906542
+best_epoch: 250
+best_test_acc_0: 0.7258064516129032
+best_test_acc_1: 0.7892561983471075
+=================
+best_test_f1_score: 0.7976424361493124
+best_acc_in_best_f1: 0.7593457943925234
+best_test_acc_0_in_f1: 0.6559139784946236
+best_test_acc_1_in_f1: 0.8388429752066116
+best_f1_epoch: 136
+
+==========fold6============
+y_test.count(0.): 239
+y_test.count(1.): 189
+=================
+best_train_acc_0: 0.7825036249395844
+best_train_acc_1: 0.7455156950672646
+best_train_acc_0_in_f1: 0.8182696955050749
+best_train_acc_1_in_f1: 0.7825112107623319
+=================
+best_test_acc: 0.719626168224299
+best_epoch: 309
+best_test_acc_0: 0.7907949790794979
+best_test_acc_1: 0.6296296296296297
+=================
+best_test_f1_score: 0.6972477064220183
+best_acc_in_best_f1: 0.6915887850467289
+best_test_acc_0_in_f1: 0.602510460251046
+best_test_acc_1_in_f1: 0.8042328042328042
+best_f1_epoch: 495
+
+==========fold7============
+y_test.count(0.): 282
+y_test.count(1.): 146
+=================
+best_train_acc_0: 0.7941757156959526
+best_train_acc_1: 0.7980295566502463
+best_train_acc_0_in_f1: 0.7665350444225074
+best_train_acc_1_in_f1: 0.6781609195402298
+=================
+best_test_acc: 0.719626168224299
+best_epoch: 374
+best_test_acc_0: 0.8617021276595744
+best_test_acc_1: 0.4452054794520548
+=================
+best_test_f1_score: 0.6010928961748635
+best_acc_in_best_f1: 0.6588785046728972
+best_test_acc_0_in_f1: 0.6099290780141844
+best_test_acc_1_in_f1: 0.7534246575342466
+best_f1_epoch: 119
+
+==========fold8============
+y_test.count(0.): 231
+y_test.count(1.): 197
+=================
+best_train_acc_0: 0.7915262397688975
+best_train_acc_1: 0.7753378378378378
+best_train_acc_0_in_f1: 0.783822821376986
+best_train_acc_1_in_f1: 0.7730855855855856
+=================
+best_test_acc: 0.7242990654205608
+best_epoch: 335
+best_test_acc_0: 0.7229437229437229
+best_test_acc_1: 0.7258883248730964
+=================
+best_test_f1_score: 0.714975845410628
+best_acc_in_best_f1: 0.7242990654205608
+best_test_acc_0_in_f1: 0.7012987012987013
+best_test_acc_1_in_f1: 0.751269035532995
+best_f1_epoch: 350
+
+==========fold9============
+y_test.count(0.): 219
+y_test.count(1.): 209
+=================
+best_train_acc_0: 0.7257060794638583
+best_train_acc_1: 0.6961451247165533
+best_train_acc_0_in_f1: 0.8142651986596458
+best_train_acc_1_in_f1: 0.6479591836734694
+=================
+best_test_acc: 0.7242990654205608
+best_epoch: 128
+best_test_acc_0: 0.7442922374429224
+best_test_acc_1: 0.7033492822966507
+=================
+best_test_f1_score: 0.7226107226107226
+best_acc_in_best_f1: 0.7219626168224299
+best_test_acc_0_in_f1: 0.7031963470319634
+best_test_acc_1_in_f1: 0.7416267942583732
+best_f1_epoch: 220
+
+==========fold10============
+y_test.count(0.): 233
+y_test.count(1.): 196
+=================
+best_train_acc_0: 0.7402409638554217
+best_train_acc_1: 0.7467642093415869
+best_train_acc_0_in_f1: 0.7402409638554217
+best_train_acc_1_in_f1: 0.7467642093415869
+=================
+best_test_acc: 0.6899766899766899
+best_epoch: 258
+best_test_acc_0: 0.6351931330472103
+best_test_acc_1: 0.7551020408163265
+=================
+best_test_f1_score: 0.6899766899766899
+best_acc_in_best_f1: 0.6899766899766899
+best_test_acc_0_in_f1: 0.6351931330472103
+best_test_acc_1_in_f1: 0.7551020408163265
+best_f1_epoch: 258
+
+mean_acc: 0.716193930679912
