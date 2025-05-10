@@ -50,5 +50,5 @@ Once you have obtained the embedding files from UniRep, ESM-2, and ProtT5, use t
 - Run the `train_Tc.py` file to train and test the TR dataset.
 - Run the `predict.py` file to predict target.
 
-
+All the results will be stored in the `results.txt` file.
 
