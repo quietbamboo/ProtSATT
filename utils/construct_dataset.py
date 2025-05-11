@@ -21,11 +21,11 @@ def load_unirep(path):
     unirep_data = np.load(path+'/test_dataset_unirep.npz', allow_pickle=True)
     # gene = np.load(npz_file, allow_pickle=True)
     # gene_name_list = gene.files
-    # 4281条数据 (key：gene_name；value：class)
+    # 4281 (key：gene_name；value：class)
     gene_name2score_dict = get_gene_class()
-    # 数据
+    # data
     x_dataset = []
-    # 标签
+    # label
     y_dataset = []
     for key, value in gene_name2score_dict.items():
         x_dataset.append(unirep_data[key].item()['avg'])
@@ -44,9 +44,9 @@ def load_json_file(path):
 
 def load_esm2(path):
     protein_dict = load_json_file(path)
-    # 数据
+    # data
     x_dataset = []
-    # 标签
+    # label
     y_dataset = []
     gene_name2score_dict = get_gene_class()
     for key, value in gene_name2score_dict.items():
@@ -67,9 +67,9 @@ def load_protT5(path):
         # print(key)
         # name = key.split('_')[0]+'_'+key.split('_')[1]+'.'+key.split('_')[2]
         embedding_dict[name] = np.array(embedding_matrix[key])
-    # 数据
+    # data
     x_dataset = []
-    # 标签
+    # label
     y_dataset = []
     gene_name2score_dict = get_gene_class()
     for key, value in gene_name2score_dict.items():
@@ -81,7 +81,6 @@ def load_protT5(path):
 
 # =================== construct csv ===================
 def construct_csv(x_dataset, y_dataset, path, file_name):
-    # 构建数据集
     print(len(x_dataset))
     x_dataset_csv = pd.DataFrame(x_dataset)
     x_dataset_csv.to_csv(path+f'/x_{file_name}_dataset.csv', header=None, index=None)

@@ -45,13 +45,9 @@ def MinMaxNomalize(data):
     max_data = max(data)
     min_data = min(data)
     denominator = max_data-min_data
-    # 归一化到 [1 1]
     return list(map(lambda x: (x-min_data)/denominator, data))
-    # 归一化到 [-1，1]
-    # return list(map(lambda x: ((x-min_data)/denominator)-0.5*2, data))
 
 def plot_scatter(actual, pred, pic_name):
-    # 绘制actual_pred散点图
     plt.scatter(actual, pred)
     plt.plot([min(actual), max(actual)], [min(actual), max(actual)], 'r--')
     # plt.text(200, 200, 'R2='+ ('%.3f'%r2score), fontdict={'family': 'serif', 'size': 16, 'color': 'black'}, ha='center', va='center')
@@ -350,7 +346,6 @@ if __name__ == '__main__':
             val_spearmanr_list.append(correlation)
             print("best_spearmanr: %s", best_spearmanr, " best_spearmanr_epoch: %s", best_spearmanr_epoch)
 
-        # 绘制loss曲线图
         plt.plot(epoch_list, train_loss_list, label='train_loss')
         plt.plot(epoch_list, val_loss_list, label='val_loss')
         plt.legend()
@@ -369,12 +364,11 @@ if __name__ == '__main__':
         # print(best_val_y_pred)
         # correlation, p_value = spearmanr(best_val_y_actual, best_val_y_pred)
         # print(f"spearman: {correlation:.3f}")
-        # print(f"p值: {p_value:.3f}")
+        # print(f"p: {p_value:.3f}")
         # print(f'best_spearmanr: {best_spearmanr}; epoch: {best_spearmanr_epoch}; val_loss: {best_spearmanr_loss}')
         print(f'spearmanr_in_best_loss: {best_val_correlation_in_loss}; epoch: {best_val_epoch}; val_loss: {best_val_mse}')
         print(f'best_spearmanr: {best_spearmanr}; epoch: {best_spearmanr_epoch}; val_loss: {best_spearmanr_loss}')
-        
-        # 绘制actual_pred散点图
+
         plot_scatter(best_val_y_actual_in_loss, best_val_y_pred_in_loss, rf'{res_dir}/spearmanr_in_best_loss{i}.png')    
         plot_scatter(best_val_y_actual_in_spearmanr, best_val_y_pred_in_spearmanr, rf'{res_dir}/best_spearmanr{i}.png')
 

@@ -31,7 +31,6 @@ def seed_torch(seed=68):
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
-    # 配置CuDNN确定性模式
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 

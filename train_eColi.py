@@ -315,7 +315,7 @@ def main(lr):
                 best_acc_in_best_f1 = val_acc_temp
                 best_test_acc_0_in_f1 = acc_temp_0
                 best_test_acc_1_in_f1 = acc_temp_1
-                # 绘制loss曲线图
+                # plot loss
         plt.plot(epoch_list, train_loss_list, label='train_loss')
         plt.plot(epoch_list, val_loss_list, label='val_loss')
         plt.plot(epoch_list, train_acc_list, label='train_acc')

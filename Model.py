@@ -3,12 +3,11 @@ from torch import nn
 import torch.nn.functional as F
 import math
 
-# Standardization 均值方差归一化
+# Standardization
 def standardization(seq):
     seq[:] = (torch[:] - torch.mean(seq))/ torch.std(seq)
     return seq
 
-# 最值归一化
 def max_standardization(seq):
     seq = (seq-torch.min(seq))/(torch.max(seq)-torch.min(seq))
     return seq
@@ -28,7 +27,6 @@ class LayerNorm(nn.Module):
         x = (x - u) / torch.sqrt(s + self.variance_epsilon)
         return self.weight * x + self.bias
 
-# ==============多层注意力=====================
 class Swish(nn.Module):
     def __init__(self, inplace=True):
         super(Swish,self).__init__()
@@ -237,7 +235,7 @@ class ProtSATT(nn.Module):
         pos_emb3 = pos_emb3.to(device)
         x3 = x3 + pos_emb3
 
-        # 第一层self 
+        # first self
         x1 = self.input1(x1).view(x1.shape[0], -1, first_self_query_dim)
         x2 = self.input2(x2).view(x2.shape[0], -1, first_self_query_dim)
         x3 = self.input3(x3).view(x3.shape[0], -1, first_self_query_dim)
@@ -246,7 +244,7 @@ class ProtSATT(nn.Module):
         atten_state2 = self.selfAttentionInput2(x2).view(x2.shape[0], -1)
         atten_state3 = self.selfAttentionInput3(x3).view(x3.shape[0], -1)
 
-        # 第二层self
+        # deep self
         if deep_self:
             atten_state1 = atten_state1.view(atten_state1.shape[0], -1, deep_self_query_dim)
             atten_state2 = atten_state2.view(atten_state2.shape[0], -1, deep_self_query_dim)
@@ -255,7 +253,7 @@ class ProtSATT(nn.Module):
             atten_state2 = self.self_atten_tower2(atten_state2)
             atten_state3 = self.self_atten_tower3(atten_state3)
 
-        # 第三层cross
+        # cross
         atten_state1 = atten_state1.view(atten_state1.shape[0], -1, 8)
         atten_state2 = atten_state2.view(atten_state2.shape[0], -1, 8)
         atten_state3 = atten_state3.view(atten_state3.shape[0], -1, 8)
@@ -281,7 +279,7 @@ class ProtSATT(nn.Module):
 
         intermediate = torch.cat((atten_state_tower1,atten_state_tower2,atten_state_tower3,atten_state_tower4,atten_state_tower5,atten_state_tower6),1)
         if return_intermediate:
-            return intermediate  # 返回某一层的特征
+            return intermediate
             
         score = self.cos(self.dense_out(self.swish(intermediate)))
         score = self.to_score(score)
@@ -344,21 +342,18 @@ class multi_layer_attention_2input(nn.Module):
         # pos_emb = rearrange(pos_emb, 'n d -> () n d')
         x2 = x2 + pos_emb2
 
-        # 第一层self 
         x1 = self.input1(x1).view(x1.shape[0], -1, first_self_query_dim)
         x2 = self.input2(x2).view(x2.shape[0], -1, first_self_query_dim)
         # self_flatten
         atten_state1 = self.selfAttentionInput1(x1).view(x1.shape[0], -1)
         atten_state2 = self.selfAttentionInput2(x2).view(x2.shape[0], -1)
 
-        # 第二层self
         if deep_self:
             atten_state1 = atten_state1.view(atten_state1.shape[0], -1, deep_self_query_dim)
             atten_state2 = atten_state2.view(atten_state2.shape[0], -1, deep_self_query_dim)
             atten_state1 = self.self_atten_tower1(atten_state1)
             atten_state2 = self.self_atten_tower2(atten_state2)
 
-        # 第三层cross
         atten_state1 = atten_state1.view(atten_state1.shape[0], -1, 8)
         atten_state2 = atten_state2.view(atten_state2.shape[0], -1, 8)
         atten_state_tower1 = atten_state1
@@ -371,7 +366,7 @@ class multi_layer_attention_2input(nn.Module):
 
         intermediate = torch.cat((atten_state_tower1,atten_state_tower2),1)
         if return_intermediate:
-            return intermediate  # 返回某一层的特征
+            return intermediate
             
         score = self.cos(self.dense_out(self.swish(intermediate)))
 
@@ -415,11 +410,10 @@ class multi_layer_attention_1input(nn.Module):
         pos_emb1 = pos_emb1.to(device)
         x1 = x1 + pos_emb1
 
-        # 第一层self 
         x1 = self.input1(x1).view(x1.shape[0], -1, first_self_query_dim)
         # self_flatten
         atten_state1 = self.selfAttentionInput1(x1).view(x1.shape[0], -1)
-        # 第二层self
+
         if deep_self:
             atten_state1 = atten_state1.view(atten_state1.shape[0], -1, deep_self_query_dim)
             atten_state1 = self.self_atten_tower1(atten_state1)
@@ -427,7 +421,7 @@ class multi_layer_attention_1input(nn.Module):
         intermediate = atten_state1
 
         if return_intermediate:
-            return intermediate  # 返回某一层的特征
+            return intermediate
             
         score = self.cos(self.dense_out(self.swish(intermediate)))
         score = self.to_score(score)
@@ -502,7 +496,6 @@ class multi_layer_attention_no_self(nn.Module):
         pos_emb3 = pos_emb3.to(device)
         x3 = x3 + pos_emb3
 
-        # 第三层cross
         atten_state1 = self.input1(x1).view(x1.shape[0], -1, 8)
         atten_state2 = self.input2(x2).view(x2.shape[0], -1, 8)
         atten_state3 = self.input3(x3).view(x3.shape[0], -1, 8)
@@ -528,7 +521,7 @@ class multi_layer_attention_no_self(nn.Module):
 
         intermediate = torch.cat((atten_state_tower1,atten_state_tower2,atten_state_tower3,atten_state_tower4,atten_state_tower5,atten_state_tower6),1)
         if return_intermediate:
-            return intermediate  # 返回某一层的特征
+            return intermediate
             
         score = self.cos(self.dense_out(self.swish(intermediate)))
         score = self.to_score(score)
@@ -602,7 +595,6 @@ class multi_layer_attention_no_cross(nn.Module):
         pos_emb3 = pos_emb3.to(device)
         x3 = x3 + pos_emb3
 
-        # 第一层self 
         x1 = self.input1(x1).view(x1.shape[0], -1, first_self_query_dim)
         x2 = self.input2(x2).view(x2.shape[0], -1, first_self_query_dim)
         x3 = self.input3(x3).view(x3.shape[0], -1, first_self_query_dim)
@@ -611,7 +603,6 @@ class multi_layer_attention_no_cross(nn.Module):
         atten_state2 = self.selfAttentionInput2(x2).view(x2.shape[0], -1)
         atten_state3 = self.selfAttentionInput3(x3).view(x3.shape[0], -1)
 
-        # 第二层self
         if deep_self:
             atten_state1 = atten_state1.view(atten_state1.shape[0], -1, deep_self_query_dim)
             atten_state2 = atten_state2.view(atten_state2.shape[0], -1, deep_self_query_dim)
@@ -626,7 +617,7 @@ class multi_layer_attention_no_cross(nn.Module):
         
         intermediate = torch.cat((atten_state1, atten_state2, atten_state3),1)
         if return_intermediate:
-            return intermediate  # 返回某一层的特征
+            return intermediate
             
         score = self.cos(self.dense_out(self.swish(intermediate)))
         score = self.to_score(score)
