@@ -1,0 +1,15 @@
+ProtSATT EColi 10-Fold Inference Report
+==================================================
+Model Path: H:\毕业项目\ProtSATT\整理\EColi\2labels\lr0.004_firstSelf0_deepSelf0.5_cross0\save_models
+==================================================
+
+Metric Summary (Mean ± Std):
+------------------------------
+ACC            : 0.7192 ± 0.0243
+PRECISION      : 0.7065 ± 0.0529
+RECALL         : 0.6470 ± 0.0970
+F1             : 0.6731 ± 0.0728
+MCC            : 0.4235 ± 0.0582
+SPECIFICITY    : 0.7698 ± 0.0514
+ROC_AUC        : 0.7525 ± 0.0317
+PR_AUC         : 0.6975 ± 0.0699

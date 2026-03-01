@@ -53,7 +53,7 @@ class CosineNegActivation(nn.Module):
         # if x<=0 or x>=1:
         #     return torch.clamp(x, min=0, max=1)
         # else:
-        return torch.where(x < 0, torch.tensor(0.0, device=x.device), 
+        return torch.where(x < 0, torch.tensor(0.0, device=x.device),
                            torch.where(x > 1, torch.tensor(1.0, device=x.device),
                                        (-torch.cos(math.pi * x) + 1) / 2))
 
@@ -102,7 +102,7 @@ class SelfAttention(nn.Module):
 
         output = torch.matmul(QK, V).permute(0, 2, 1, 3).contiguous().view(batch_size, seq_length, self.query_dim)
         # print('===============', output.shape)
-        
+
         # # Apply dropout if specified
         # if self.dropout:
         #     output = self.dropout(output)
@@ -173,7 +173,7 @@ class ProtSATT(nn.Module):
             *,
             dropout,
             first_self_query_dim=32, first_self_return_dim=512, first_self_num_head=1, first_self_dropout=0.15, first_self_encoder_with_res=True, first_self_residual_coef=1,
-            self_deep=1, 
+            self_deep=1,
             deep_self_query_dim=16, deep_self_return_dim=128, deep_self_num_head=1, deep_self_dropout=0.15, deep_self_encoder_with_res=True, deep_self_residual_coef=1,
             deep_cross_query_dim=8, deep_cross_return_dim=32, deep_cross_num_head=1, deep_cross_dropout=0.15, deep_cross_encoder_with_res=True, deep_cross_residual_coef=0.5,
             out_scores=2,
@@ -211,7 +211,8 @@ class ProtSATT(nn.Module):
         self.dense_out = nn.LazyLinear(16)
         self.to_score = nn.Linear(16, out_scores)
 
-    def forward(self, x_embed1, x_embed2, x_embed3, device, first_self_query_dim=32, deep_self=True, deep_self_query_dim=16, deep_cross_query_dim=8, return_intermediate=False):
+    def forward(self, x_embed1, x_embed2, x_embed3, device, first_self_query_dim=32, deep_self=True, deep_self_query_dim=16, deep_cross_query_dim=8, return_features=False):
+        # 1280 1024 1900
         n1 = x_embed1.shape[1]
         # [batch, 1900]
         x1 = self.dropout_emb(x_embed1)
@@ -278,11 +279,13 @@ class ProtSATT(nn.Module):
             atten_state_tower6 = layer(atten_state_tower6, atten_state2)
 
         intermediate = torch.cat((atten_state_tower1,atten_state_tower2,atten_state_tower3,atten_state_tower4,atten_state_tower5,atten_state_tower6),1)
-        if return_intermediate:
-            return intermediate
-            
-        score = self.cos(self.dense_out(self.swish(intermediate)))
-        score = self.to_score(score)
+
+        features = self.cos(self.dense_out(self.swish(intermediate)))
+
+        score = self.to_score(features)
+        if return_features:
+            # return score.squeeze(1), torch.cat((x_embed1,x_embed2,x_embed3),1)
+            return score.squeeze(1), intermediate
         return score.squeeze(1)
 
 class multi_layer_attention_2input(nn.Module):
@@ -291,7 +294,7 @@ class multi_layer_attention_2input(nn.Module):
             *,
             dropout,
             first_self_query_dim=32, first_self_return_dim=512, first_self_num_head=1, first_self_dropout=0.15, first_self_encoder_with_res=True, first_self_residual_coef=1,
-            self_deep=1, 
+            self_deep=1,
             deep_self_query_dim=16, deep_self_return_dim=128, deep_self_num_head=1, deep_self_dropout=0.15, deep_self_encoder_with_res=True, deep_self_residual_coef=1,
             deep_cross_query_dim=8, deep_cross_return_dim=32, deep_cross_num_head=1, deep_cross_dropout=0.15, deep_cross_encoder_with_res=True, deep_cross_residual_coef=0.5,
             out_scores=2,
@@ -367,7 +370,7 @@ class multi_layer_attention_2input(nn.Module):
         intermediate = torch.cat((atten_state_tower1,atten_state_tower2),1)
         if return_intermediate:
             return intermediate
-            
+
         score = self.cos(self.dense_out(self.swish(intermediate)))
 
         score = self.to_score(score)
@@ -379,7 +382,7 @@ class multi_layer_attention_1input(nn.Module):
             *,
             dropout,
             first_self_query_dim=32, first_self_return_dim=512, first_self_num_head=1, first_self_dropout=0.15, first_self_encoder_with_res=True, first_self_residual_coef=1,
-            self_deep=1, 
+            self_deep=1,
             deep_self_query_dim=16, deep_self_return_dim=128, deep_self_num_head=1, deep_self_dropout=0.15, deep_self_encoder_with_res=True, deep_self_residual_coef=1,
             deep_cross_query_dim=8, deep_cross_return_dim=32, deep_cross_num_head=1, deep_cross_dropout=0.15, deep_cross_encoder_with_res=True, deep_cross_residual_coef=0.5,
             out_scores=2,
@@ -422,7 +425,7 @@ class multi_layer_attention_1input(nn.Module):
 
         if return_intermediate:
             return intermediate
-            
+
         score = self.cos(self.dense_out(self.swish(intermediate)))
         score = self.to_score(score)
         return score.squeeze(1)
@@ -434,7 +437,7 @@ class multi_layer_attention_no_self(nn.Module):
             *,
             dropout,
             first_self_query_dim=32, first_self_return_dim=512, first_self_num_head=1, first_self_dropout=0.15, first_self_encoder_with_res=True, first_self_residual_coef=1,
-            self_deep=1, 
+            self_deep=1,
             deep_self_query_dim=16, deep_self_return_dim=128, deep_self_num_head=1, deep_self_dropout=0.15, deep_self_encoder_with_res=True, deep_self_residual_coef=1,
             deep_cross_query_dim=8, deep_cross_return_dim=32, deep_cross_num_head=1, deep_cross_dropout=0.15, deep_cross_encoder_with_res=True, deep_cross_residual_coef=0.5,
             out_scores=2,
@@ -522,7 +525,7 @@ class multi_layer_attention_no_self(nn.Module):
         intermediate = torch.cat((atten_state_tower1,atten_state_tower2,atten_state_tower3,atten_state_tower4,atten_state_tower5,atten_state_tower6),1)
         if return_intermediate:
             return intermediate
-            
+
         score = self.cos(self.dense_out(self.swish(intermediate)))
         score = self.to_score(score)
         return score.squeeze(1)
@@ -533,7 +536,7 @@ class multi_layer_attention_no_cross(nn.Module):
             *,
             dropout,
             first_self_query_dim=32, first_self_return_dim=512, first_self_num_head=1, first_self_dropout=0.15, first_self_encoder_with_res=True, first_self_residual_coef=1,
-            self_deep=1, 
+            self_deep=1,
             deep_self_query_dim=16, deep_self_return_dim=128, deep_self_num_head=1, deep_self_dropout=0.15, deep_self_encoder_with_res=True, deep_self_residual_coef=1,
             deep_cross_query_dim=8, deep_cross_return_dim=32, deep_cross_num_head=1, deep_cross_dropout=0.15, deep_cross_encoder_with_res=True, deep_cross_residual_coef=0.5,
             out_scores=2,
@@ -614,11 +617,11 @@ class multi_layer_attention_no_cross(nn.Module):
         atten_state1 = atten_state1.view(atten_state1.shape[0], -1)
         atten_state2 = atten_state2.view(atten_state2.shape[0], -1)
         atten_state3 = atten_state3.view(atten_state3.shape[0], -1)
-        
+
         intermediate = torch.cat((atten_state1, atten_state2, atten_state3),1)
         if return_intermediate:
             return intermediate
-            
+
         score = self.cos(self.dense_out(self.swish(intermediate)))
         score = self.to_score(score)
         return score.squeeze(1)

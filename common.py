@@ -158,30 +158,30 @@ def split_train_test_Tc(x_dataset1, x_dataset2, x_dataset3, y_dataset, test_leng
         y_dataset_train = y_dataset[0:-(test_length*2)]
 
         #iloc选择参数序列中所对应的行
-        return torch.FloatTensor(np.array(x_dataset1_train)), \
-               torch.FloatTensor(np.array(x_dataset2_train)), \
-               torch.FloatTensor(np.array(x_dataset3_train)), \
-               torch.FloatTensor(np.array(y_dataset_train)), \
-               torch.FloatTensor(np.array(x_dataset1_val)), \
-               torch.FloatTensor(np.array(x_dataset2_val)), \
-               torch.FloatTensor(np.array(x_dataset3_val)), \
-               torch.FloatTensor(np.array(y_dataset_val)), \
-               torch.FloatTensor(np.array(x_dataset1_test)), \
-               torch.FloatTensor(np.array(x_dataset2_test)), \
-               torch.FloatTensor(np.array(x_dataset3_test)), \
-               torch.FloatTensor(np.array(y_dataset_test))
-        # return x_dataset1_train, \
-        #        x_dataset2_train, \
-        #        x_dataset3_train, \
-        #        y_dataset_train, \
-        #        x_dataset1_val, \
-        #        x_dataset2_val, \
-        #        x_dataset3_val, \
-        #        y_dataset_val, \
-        #        x_dataset1_test, \
-        #        x_dataset2_test, \
-        #        x_dataset3_test, \
-        #        y_dataset_test
+        # return torch.FloatTensor(np.array(x_dataset1_train)), \
+        #        torch.FloatTensor(np.array(x_dataset2_train)), \
+        #        torch.FloatTensor(np.array(x_dataset3_train)), \
+        #        torch.FloatTensor(np.array(y_dataset_train)), \
+        #        torch.FloatTensor(np.array(x_dataset1_val)), \
+        #        torch.FloatTensor(np.array(x_dataset2_val)), \
+        #        torch.FloatTensor(np.array(x_dataset3_val)), \
+        #        torch.FloatTensor(np.array(y_dataset_val)), \
+        #        torch.FloatTensor(np.array(x_dataset1_test)), \
+        #        torch.FloatTensor(np.array(x_dataset2_test)), \
+        #        torch.FloatTensor(np.array(x_dataset3_test)), \
+        #        torch.FloatTensor(np.array(y_dataset_test))
+        return x_dataset1_train, \
+               x_dataset2_train, \
+               x_dataset3_train, \
+               y_dataset_train, \
+               x_dataset1_val, \
+               x_dataset2_val, \
+               x_dataset3_val, \
+               y_dataset_val, \
+               x_dataset1_test, \
+               x_dataset2_test, \
+               x_dataset3_test, \
+               y_dataset_test
     else:
         raise ValueError('length of x and y is not same')
 

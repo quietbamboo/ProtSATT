@@ -1,0 +1,77 @@
+========== Fold 1 ============
+Best Epoch: 191
+ACC: 0.5197
+Macro Precision: 0.5135
+Macro Recall: 0.5191
+Macro F1: 0.5116
+
+========== Fold 2 ============
+Best Epoch: 224
+ACC: 0.4709
+Macro Precision: 0.4670
+Macro Recall: 0.4667
+Macro F1: 0.4630
+
+========== Fold 3 ============
+Best Epoch: 496
+ACC: 0.5260
+Macro Precision: 0.5213
+Macro Recall: 0.5247
+Macro F1: 0.5225
+
+========== Fold 4 ============
+Best Epoch: 66
+ACC: 0.4866
+Macro Precision: 0.4858
+Macro Recall: 0.4831
+Macro F1: 0.4837
+
+========== Fold 5 ============
+Best Epoch: 201
+ACC: 0.4961
+Macro Precision: 0.4922
+Macro Recall: 0.4941
+Macro F1: 0.4927
+
+========== Fold 6 ============
+Best Epoch: 322
+ACC: 0.5402
+Macro Precision: 0.5413
+Macro Recall: 0.5362
+Macro F1: 0.5325
+
+========== Fold 7 ============
+Best Epoch: 469
+ACC: 0.5354
+Macro Precision: 0.5338
+Macro Recall: 0.5272
+Macro F1: 0.5184
+
+========== Fold 8 ============
+Best Epoch: 397
+ACC: 0.5150
+Macro Precision: 0.5100
+Macro Recall: 0.5127
+Macro F1: 0.5067
+
+========== Fold 9 ============
+Best Epoch: 444
+ACC: 0.5063
+Macro Precision: 0.5158
+Macro Recall: 0.5021
+Macro F1: 0.5037
+
+========== Fold 10 ============
+Best Epoch: 117
+ACC: 0.5174
+Macro Precision: 0.5173
+Macro Recall: 0.5135
+Macro F1: 0.5138
+
+
+========== Final Average Results ==========
+Seed: 2024
+ACC: 0.5113 ¡À 0.0206
+Macro Precision: 0.5098 ¡À 0.0213
+Macro Recall: 0.5080 ¡À 0.0204
+Macro F1: 0.5049 ¡À 0.0193

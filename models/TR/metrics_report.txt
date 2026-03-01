@@ -1,0 +1,10 @@
+ProtSATT TR Training Report (Global Norm)
+Loss Function: MSE
+Best Epoch: 164
+------------------------------
+R2             : 0.27458147122970433
+MAE            : 0.0943122127013143
+RMSE           : 0.12989476107660233
+Pearson        : 0.5321557820739478
+Spearman       : 0.5252906422717744
+

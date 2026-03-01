@@ -19,6 +19,7 @@ import matplotlib
 from sklearn.model_selection import KFold
 from sklearn.metrics import r2_score
 from sklearn import preprocessing
+from sklearn.metrics import roc_auc_score
 # matplotlib.use('TkAgg')
 # from keras.utils import np_utils
 # from sklearn.metrics import classification_report
@@ -360,7 +361,7 @@ def main(lr=0.0006, first_self_residual_coef=0, deep_self_residual_coef=0, deep_
     state_dict_best_loss = torch.load(f'{res_model_dir}/best_epoch_{BEST_EPOCH}.pth')
     model.load_state_dict(state_dict_best_loss)
     Accuracy, Recall, Precision, F1, auc_value, R2 = predict(model, dataloader_test, args)
-    with open(rf'{res_save_dir}/test_output_res.txt', 'a') as f:
+    with open(rf'{res_dir}/test_output_res.txt', 'a') as f:
         output_list = []
         output_list.append(f'\n\n{res_model_dir}/best_epoch_{BEST_EPOCH}.pth')
         output_list.append('\n======== model in test=========\n')
