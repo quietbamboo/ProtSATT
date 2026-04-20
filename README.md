@@ -44,7 +44,7 @@ Once you have obtained the embedding files from UniRep, ESM-2, and ProtT5, use t
 
 ### Train and test
 
-- Run the `train_eColi_*.py` file to train and validate the E. coli dataset. 
+- Run the `train_eColi.py` file to train and validate the E. coli dataset. 
 - Run the `train_eSOL_fold.py` file to optimize the hyperparameters of the eSOL dataset. 
 - Run the `train_eSOL.py` file to train the eSOL dataset. 
 - Run the `train_TR.py` file to train and test the TR dataset.
